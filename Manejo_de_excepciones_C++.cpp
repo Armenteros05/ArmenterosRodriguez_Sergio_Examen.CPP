@@ -19,8 +19,6 @@ struct Asistencia {
     std::string materia;
     std::string estado;
 };
-
-
 struct Estudiante {
     std::string nombre;
     int edad;
@@ -31,6 +29,21 @@ struct Estudiante {
 
 void registrarAsistencia(Estudiante& estudiante, const std::string& fecha,
                          const std::string& materia, const std::string& estado) {
+    if (fecha.length() != 10 || fecha[4] != '-' || fecha[7] != '-') {
+        throw AsistenciaException("Formato de fecha incorrecto. Utilice YYYY-MM-DD.");
+    }
+    bool materiaRegistrada = false;
+    for (int i = 0; i < estudiante.numAsistencias; ++i) {
+        if (estudiante.asistencias[i].materia == materia) {
+            materiaRegistrada = true;
+            break;
+        }
+    }
+
+    if (!materiaRegistrada) {
+        throw AsistenciaException("La materia no esta registrada para este estudiante.");
+    }
+
     if (estudiante.numAsistencias < 50) {
         estudiante.asistencias[estudiante.numAsistencias] = {fecha, materia, estado};
         estudiante.numAsistencias++;
@@ -64,7 +77,7 @@ int main() {
                     std::cout << "\nDetalles del estudiante:\n";
                     std::cout << "-----------------------\n";
                     std::cout << "Nombre: " << estudiante1.nombre << std::endl;
-                    std::cout << "Edad: " << estudiante1.edad << "" << std::endl;
+                    std::cout << "Edad: " << estudiante1.edad << " años" << std::endl;
                     std::cout << "Promedio: " << estudiante1.promedio << std::endl;
                     std::cout << "Asistencias registradas: " << estudiante1.numAsistencias << std::endl;
                     break;
