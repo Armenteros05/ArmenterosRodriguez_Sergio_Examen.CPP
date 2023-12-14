@@ -29,3 +29,28 @@ void eliminarMateria(Estudiante& estudiante, const std::string& materia) {
         estudiante.materias.erase(it);
     }
 }
+int main() {
+    // Creación de un objeto Estudiante
+    Estudiante estudiante1;
+
+    // Asignación de valores a los campos
+    estudiante1.nombre = "Juan";
+    estudiante1.edad = 20;
+    estudiante1.promedio = 8.5;
+
+    // Agregar materias
+    agregarMateria(estudiante1, "Matemáticas");
+    agregarMateria(estudiante1, "Programación");
+    agregarMateria(estudiante1, "Inglés");
+
+    // Mostrar detalles del estudiante
+    mostrarEstudiante(estudiante1);
+
+    // Eliminar una materia
+    eliminarMateria(estudiante1, "Programación");
+
+    // Mostrar detalles del estudiante después de eliminar una materia
+    mostrarEstudiante(estudiante1);
+
+    return 0;
+}
