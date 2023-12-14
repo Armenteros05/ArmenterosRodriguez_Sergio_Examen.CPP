@@ -13,3 +13,16 @@ public:
         return mensaje.c_str();
     }
 };
+struct Asistencia {
+    std::string fecha;
+    std::string materia;
+    std::string estado;
+};
+
+struct Estudiante {
+    std::string nombre;
+    int edad;
+    float promedio;
+    Asistencia asistencias[50];
+    int numAsistencias;
+};
