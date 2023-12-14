@@ -24,3 +24,9 @@ void mostrarEstudiante(const Estudiante& estudiante) {
                   << ", Estado: " << asistencia.estado << std::endl;
     }
 }
+void registrarAsistencia(Estudiante& estudiante, const std::string& fecha,
+                         const std::string& materia, const std::string& estado) {
+    Asistencia nuevaAsistencia = {fecha, materia, estado};
+    estudiante.asistencias.push_back(nuevaAsistencia);
+    std::cout << "Asistencia registrada con éxito.\n";
+}
