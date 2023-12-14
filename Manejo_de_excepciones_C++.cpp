@@ -13,11 +13,13 @@ public:
         return mensaje.c_str();
     }
 };
+
 struct Asistencia {
     std::string fecha;
     std::string materia;
     std::string estado;
 };
+
 
 struct Estudiante {
     std::string nombre;
@@ -26,6 +28,7 @@ struct Estudiante {
     Asistencia asistencias[50];
     int numAsistencias;
 };
+
 void registrarAsistencia(Estudiante& estudiante, const std::string& fecha,
                          const std::string& materia, const std::string& estado) {
     if (estudiante.numAsistencias < 50) {
@@ -33,9 +36,10 @@ void registrarAsistencia(Estudiante& estudiante, const std::string& fecha,
         estudiante.numAsistencias++;
         std::cout << "Asistencia registrada con exito.\n";
     } else {
-        throw AsistenciaException("No se pueden registrar mas asistencias. Limite alcanzado.");
+        throw AsistenciaException("No se pueden registrar más asistencias. Limite alcanzado.");
     }
 }
+
 int main() {
     Estudiante estudiante1;
     estudiante1.nombre = "Juan";
@@ -43,14 +47,52 @@ int main() {
     estudiante1.promedio = 8.5;
     estudiante1.numAsistencias = 0;
 
-    try {
-        registrarAsistencia(estudiante1, "2023-01-15", "Matematicas", "Asistio");
-        registrarAsistencia(estudiante1, "2023-01-16", "Programacion", "Falta");
-        registrarAsistencia(estudiante1, "2023-01-17", "Inglés", "Tardanza");
-        registrarAsistencia(estudiante1, "2023-01-18", "Historia", "Asistio");
-    } catch (const AsistenciaException &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
+    int opcion;
+
+    do {
+        std::cout << "\n--- Menu ---" << std::endl;
+        std::cout << "1. Mostrar detalles del estudiante" << std::endl;
+        std::cout << "2. Registrar nueva asistencia" << std::endl;
+        std::cout << "0. Salir" << std::endl;
+
+        std::cout << "Selecciona una opcion: ";
+        std::cin >> opcion;
+
+        try {
+            switch (opcion) {
+                case 1:
+                    std::cout << "\nDetalles del estudiante:\n";
+                    std::cout << "-----------------------\n";
+                    std::cout << "Nombre: " << estudiante1.nombre << std::endl;
+                    std::cout << "Edad: " << estudiante1.edad << "" << std::endl;
+                    std::cout << "Promedio: " << estudiante1.promedio << std::endl;
+                    std::cout << "Asistencias registradas: " << estudiante1.numAsistencias << std::endl;
+                    break;
+                case 2:
+                {
+                    std::string fecha, materia, estado;
+                    std::cout << "Ingrese la fecha de la asistencia (YYYY-MM-DD): ";
+                    std::cin >> fecha;
+                    std::cout << "Ingrese la materia: ";
+                    std::cin.ignore();
+                    std::getline(std::cin, materia);
+                    std::cout << "Ingrese el estado (Asistio, Falta, Tardanza): ";
+                    std::cin >> estado;
+
+                    registrarAsistencia(estudiante1, fecha, materia, estado);
+                }
+                    break;
+                case 0:
+                    std::cout << "Saliendo del programa." << std::endl;
+                    break;
+                default:
+                    std::cout << "Opcion no válida. Intentalo de nuevo." << std::endl;
+            }
+        } catch (const AsistenciaException& e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+        }
+
+    } while (opcion != 0);
 
     return 0;
 }
