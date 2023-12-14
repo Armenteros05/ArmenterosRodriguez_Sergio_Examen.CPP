@@ -14,7 +14,7 @@ struct Estudiante {
 // Función para mostrar los detalles de un estudiante
 void mostrarEstudiante(const Estudiante& estudiante) {
     std::cout << "Nombre: " << estudiante.nombre << std::endl;
-    std::cout << "Edad: " << estudiante.edad << " años" << std::endl;
+    std::cout << "Edad: " << estudiante.edad << "" << std::endl;
     std::cout << "Promedio: " << estudiante.promedio << std::endl;
 
     // Mostrar materias
@@ -47,13 +47,13 @@ int main() {
     int opcion;
 
     do {
-        std::cout << "\n--- Menú ---" << std::endl;
+        std::cout << "\n--- Menu ---" << std::endl;
         std::cout << "1. Mostrar detalles del estudiante" << std::endl;
         std::cout << "2. Agregar materia" << std::endl;
         std::cout << "3. Eliminar materia" << std::endl;
         std::cout << "0. Salir" << std::endl;
 
-        std::cout << "Selecciona una opción: ";
+        std::cout << "Selecciona una opcion: ";
         std::cin >> opcion;
 
         switch (opcion) {
@@ -66,7 +66,7 @@ int main() {
                 std::cout << "Ingrese el nombre de la nueva materia: ";
                 std::cin >> nuevaMateria;
                 agregarMateria(estudiante1, nuevaMateria);
-                std::cout << "Materia agregada con éxito." << std::endl;
+                std::cout << "Materia agregada con exito." << std::endl;
             }
                 break;
             case 3:
@@ -75,16 +75,17 @@ int main() {
                 std::cout << "Ingrese el nombre de la materia a eliminar: ";
                 std::cin >> materiaAEliminar;
                 eliminarMateria(estudiante1, materiaAEliminar);
-                std::cout << "Materia eliminada con éxito." << std::endl;
+                std::cout << "Materia eliminada con exito." << std::endl;
             }
                 break;
             case 0:
                 std::cout << "Saliendo del programa." << std::endl;
                 break;
             default:
-                std::cout << "Opción no válida. Inténtalo de nuevo." << std::endl;
+                std::cout << "Opción no valida. Intentalo de nuevo." << std::endl;
         }
     } while (opcion != 0);
 
     return 0;
 }
+
