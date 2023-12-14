@@ -30,3 +30,17 @@ void registrarAsistencia(Estudiante& estudiante, const std::string& fecha,
     estudiante.asistencias.push_back(nuevaAsistencia);
     std::cout << "Asistencia registrada con éxito.\n";
 }
+int main() {
+    Estudiante estudiante1;
+    estudiante1.nombre = "Juan";
+    estudiante1.edad = 20;
+    estudiante1.promedio = 8.5;
+
+    registrarAsistencia(estudiante1, "2023-01-15", "Matemáticas", "Asistió");
+    registrarAsistencia(estudiante1, "2023-01-16", "Programación", "Falta");
+    registrarAsistencia(estudiante1, "2023-01-17", "Inglés", "Tardanza");
+
+    mostrarEstudiante(estudiante1);
+
+    return 0;
+}
